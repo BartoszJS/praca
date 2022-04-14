@@ -1,0 +1,438 @@
+<h1>Edit Article</h1>
+      <?php if ($errors['warning']) { ?>
+        <div class="alert alert-danger"><?= $errors['warning'] ?></div>
+      <?php } ?>
+        <section class="image">
+          <?php if (!$article['image_file']) { ?>
+            <label for="image">Upload image:</label>
+            <div class="form-group image-placeholder">
+              <input type="file" name="image" class="form-control-file" id="image"><br>
+              <span class="errors"><?= $errors['image_file'] ?></span>
+            </div>
+            <div class="form-group">
+              <label for="image_alt">Alt text: </label>
+              <input type="text" name="image_alt" id="image_alt" value="" class="form-control">
+              <span class="errors"><?= $errors['image_alt'] ?></span>
+            </div>
+          <?php } else { ?>
+            <label>Image:</label>
+            <img src="../uploads/<?= html_escape($article['image_file']) ?>"
+                 alt="<?= html_escape($article['image_alt']) ?>">
+            <p class="alt"><strong>Alt text:</strong> <?= html_escape($article['image_alt']) ?></p>
+            <a href="alt-text-edit.php?id=<?= $article['id'] ?>" class="btn btn-secondary">Edit alt text</a>
+            <a href="image-delete.php?id=<?= $id ?>" class="btn btn-secondary">Delete image</a><br><br>
+          <?php } ?>
+        </section> 
+
+
+
+petla dla wojewodztwa
+
+<?php for($i=0;$i<16;$i++) { ?>
+              <option value="<?= $wojewodztwa[$i] ?>"> <?= $wojewodztwa[$i] ?></option>
+            <?php } ?>
+
+
+
+
+
+
+
+
+<div class="form-check">
+          <input type="checkbox" name="published" value="1" class="form-check-input" id="published"
+               <?= ($article['published'] == 1) ? 'checked' : ''; ?> > 
+          <label for="published" class="form-check-label"> Published</label>
+        </div>
+
+
+
+
+
+
+<?php
+include 'includes/database-connection.php'; 
+include 'includes/functions.php'; 
+include 'includes/validate.php';                                // Validation functions
+$uploads = dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR; // Image upload folder
+$file_types      = ['image/jpeg', 'image/png', 'image/gif',];      // Allowed file types
+$file_extensions = ['jpg', 'jpeg', 'png', 'gif',];                 // Allowed extensions
+$max_size        = '5242880';                                      // Max file size
+
+$temp        = $_FILES['image']['tmp_name'] ?? '';                 // Temporary image
+$destination = '';  
+
+$animal = [
+    'zwierze'     => '',
+    'imie'        => '',
+    'rasa'        => '',
+    'wielkosc'    => '',
+    'kolor'       => '',
+    'wojewodztwo' => '',
+    'miasto'      => '',
+    'plik'        => '',
+    
+];
+ 
+
+$errors = [
+  'zwierze'     => '',
+  'imie'        => '',
+  'rasa'        => '',
+  'wielkosc'    => '',
+  'kolor'       => '',
+  'wojewodztwo' => '',
+  'miasto' => '',
+  'plik'  => '',
+]; 
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $animal['plik']=create_filename($_FILES['image']['name'],$uploads);
+    $destination = $uploads .$animal['plik'];
+
+  $animal['zwierze']    =$_POST['zwierze'];
+  $animal['imie']       =$_POST['imie'];
+  $animal['rasa']       =$_POST['rasa'];
+  $animal['wielkosc']   =$_POST['wielkosc'];
+  $animal['kolor']      =$_POST['kolor'];
+  $animal['wojewodztwo']=$_POST['wojewodztwo'];
+  $animal['miasto']     =$_POST['miasto'];
+
+  $arguments=$animal;
+  
+  try {                                                    // Try to insert data
+    $pdo->beginTransaction();                            // Start transaction
+    if ($destination) {                                  // If have valid image
+        // Crop and save file
+        $imagick = new \Imagick($temp);                  // Object to represent image
+        $imagick->cropThumbnailImage(1200, 700);         // Create cropped image
+        $imagick->writeImage($destination);              // Save file
+
+        $sql = "INSERT INTO image (image) 
+                VALUES (:image);";                  // SQL to add image
+
+        // Run SQL to add image to image table
+        pdo($pdo, $sql, [$arguments['plik']]); 
+        $animal['id_image'] = $pdo->lastInsertId();   // Get new image id
+    }
+  
+  
+  $sql="INSERT INTO animal(zwierze,imie,rasa,wielkosc,kolor,wojewodztwo,miasto,id_image,id_member,zaginiony)
+  values(:zwierze,:imie,:rasa,:wielkosc,:kolor,:wojewodztwo,:miasto,:id_image,2,1);";
+
+    pdo($pdo, $sql, $arguments);                         // Run SQL to add article
+    $pdo->commit();                                      // Commit changes
+    redirect('articles.php', ['success' => 'Article saved']); // Redirect
+} catch (Exception $e) {                                 // If exception thrown
+$pdo->rollBack();                                    // Roll back SQL changes
+if (file_exists($destination)) {                     // If image file exists
+    unlink($destination);                            // Delete image file
+}
+    }
+
+
+  }
+
+
+?>   
+
+
+
+
+ <span class="errors"><?= $errors['imie'] ?></span>
+
+
+
+ header("Location: animal.php?id=.$lastAnimal"); 
+    exit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    css
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    /* text-transform: capitalize; */
+ }
+
+ body{
+    min-height: 100vh;
+    overflow-x: hidden;
+ }
+
+/* .headercontainer{
+    background-color: lightblue;
+    margin-right: auto;
+    height: 10em;
+}
+.headercontainer .logo{
+    font-size: 2.5em;
+}
+
+.headercontainer .header {
+    text-align: right;
+
+  }
+
+  .headercontainer .header a{
+    font-size: 1.5em;
+    background-color: bisque;
+  } */
+
+  .header{
+    background-color: #009500;
+    position: sticky;
+    top:0; left:0;
+    z-index: 1000;
+ }
+ 
+ .header .flex{
+    display: flex;
+    align-items: center;
+    padding:1.5rem 2rem;
+    max-width: 1200px;
+    margin:0 auto;
+ }
+ 
+ .header .flex .logo{
+    margin-right: auto;
+    font-size: 2.5rem;
+    color: white;
+    
+ }
+
+ .header .flex .logo:hover{
+     color: black;
+ }
+ 
+ .header .flex .navbar a{
+    margin-left: 2rem;
+    font-size: 1.1rem;
+    color: white;
+    float:left;
+    max-width: 160px;
+    text-align: center;
+ }
+ 
+ .header .flex .navbar a:hover{
+    color:black;
+ }
+
+ footer {
+    clear: both;
+    font-size: 0.8rem;
+    text-align: right;
+    color: #a39f9c;
+    padding: 1rem 0;
+  }
+
+
+
+
+
+
+
+  .form-control {
+   display: block;
+   width: 100%;
+   height: calc(2.25rem + 2px);
+   padding: .375rem .75rem;
+   font-size: 1rem;
+   line-height: 1.5;
+   background-clip: padding-box;
+   border: 1px solid #ced4da;
+   border-radius: .25rem;
+  }
+
+
+
+
+
+ 
+.error{
+   color:red;
+   margin-top:10px;
+   margin-bottom:10px;
+}
+.formularz{
+   text-align: center;
+   margin: auto;
+   width: 50%;
+   /* border: 3px solid black; */
+   border-radius: 3%;
+}
+.formularz .ramka{
+   text-align: left;
+   margin: auto;
+   width: 60%;
+   /* border: 3px solid black; */
+  
+}
+
+/*
+.formularz .ramka .form-group{
+    border: 1px solid black; 
+}
+*/
+.accept:hover{
+   font-weight: bold;
+   
+}
+
+.g-recaptcha{
+   display: inline-block;
+   width: 100%;
+   position: relative;
+   overflow: hidden;
+}
+
+#not-found{
+   text-align: center;;
+   
+}
+#not-found a{
+   text-align: center;
+   text-decoration: underline;
+   
+}
+
+.baza{
+   border: 2px solid rgb(0, 0, 0);
+   text-align: center;
+   margin: auto;
+   width: 50%;
+   font-size: 24px;
+}
+.kontakt{
+   border: 2px solid black;
+   text-align: center;
+   margin: auto;
+   width: 80%;
+   font-size: 24px;
+}
+
+/* img{
+   display: block;
+   max-width: 100%;
+} */
+ /* .column{
+   height: 35%;
+   width: 50%;
+}  */
+.image-resize{
+   height:28rem;
+   width: 80%;
+   border: 2px solid  green;
+   overflow: hidden;
+   object-position: center center;
+   object-fit: cover;
+
+
+   /* object-fit: cover;
+   object-position: center center;
+   overflow: hidden;
+   clear: both;
+   border: 2px solid  green; */
+}
+
+
+
+
+
+
+
+ <div class="flex">
+
+        <a href="index.php" class="logo">Znajdź zwierzaka</a> 
+
+        <nav class="navbar">
+
+            <a href="zaginione.php">Baza zaginionych zwierząt</a>
+            <a href="zglos.php">Zgłoś zaginięcie zwierzaka</a>
+            <a href="bezpanskie.php">Baza bezpańskich zwierząt</a>
+            <a href="dodaj.php">Dodaj bezpańskie zwierzę</a>
+            
+            <a href="search.php">
+                <i class="fa fa-search"></i>
+              <span class="search-text">Szukaj</span>
+            </a>
+            
+        </nav>
+    </div>
+
+
+
+
+
+
+
+    header{
+    background-color: #009500;
+    position: sticky;
+    top:0; left:0;
+    z-index: 1000;
+ }
+ 
+ .header .flex{
+    display: flex;
+    align-items: center;
+    padding:1.5rem 2rem;
+    max-width: 1200px;
+    margin:0 auto;
+ }
+ 
+ .header .flex .logo{
+    margin-right: auto;
+    font-size: 2.5rem;
+    color: white;
+    
+ }
+
+ .header .flex .logo:hover{
+     color: black;
+ }
+ 
+ .header .flex .navbar a{
+    margin-left: 2rem;
+    font-size: 1.1rem;
+    color: white;
+    float:left;
+    max-width: 160px;
+    text-align: center;
+ }
+ 
+ .header .flex .navbar a:hover{
+    color:black;
+ }
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+  

@@ -3,11 +3,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Inconsolata:wght@400;600&family=Montserrat:wght@100;400;600&family=Roboto+Slab:wght@200;300&display=swap" rel="stylesheet">
 
 
-
-
-
-
-
 <header class="header">
     
     <div class="inner_header">

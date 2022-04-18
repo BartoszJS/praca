@@ -43,7 +43,7 @@ $animalstreet = pdo($pdo,$sql)->fetchAll();
 </head>
 <body>
 
-        <br><br>
+        
     <div class="zaginione">      
         <h1>Najnowsze zaginione zwierzęta:</h1>
             

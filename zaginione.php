@@ -94,7 +94,7 @@ $section='';
 <body>
 <br><br>
 <div class="wyszukanie">
-<br><br><br> 
+<br>
     <div class="place">
     
     <h3> Zaginione zwierzęta </h3>

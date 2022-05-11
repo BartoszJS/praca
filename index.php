@@ -15,6 +15,8 @@ $sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielko
 $animal = pdo($pdo,$sql)->fetchAll();
 
 
+
+
 $sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
     animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
     image.plik

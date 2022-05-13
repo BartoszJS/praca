@@ -16,11 +16,10 @@
         </div>
         </label>
         <ul class="navigatione">
-            <a class="active" href="zaginione.php"><li><i class="fa fa-search"></i> <br> Baza zaginionych <br> zwierząt <div class="przerwa"><br></div></li> </a>
-            <a class="active" href="zglos.php"><li> <i class="fa fa-plus"></i>  <br> Zgłoś zaginięcie<br>zwierzęcia  <div class="przerwa"><br></div></li> </a>
-            <a class="active" href="bezpanskie.php"><li><i class="fa fa-search"></i> <br> Baza bezpańskich<br>zwierząt  <div class="przerwa"><br></div></li> </a>
-            <a class="active" href="dodaj.php"><li><i class="fa fa-plus"></i> <br>  Dodaj bezpańskie<br>zwierzę  </li> <div class="przerwa"><br></div></a>
-            <a class="active" href="dodaj.php"><li><i class="fa fa-sign-in"></i> <br>Logowanie<br>Rejestracja  </li> <div class="przerwa"></div></a>
+            <a class="active" href="zaginione.php"><li><i class="fa fa-search"></i> <br> Zaginione zwierzęta <div class="przerwa"><br></div></li> </a>
+            <a class="active" href="bezdomne.php"><li> <i class="fa fa-search"></i>  <br> Bezdomne zwierzęta  <div class="przerwa"><br></div></li> </a>
+
+            <a class="active" href="login.php"><li><i class="fa fa-sign-in"></i> <br>Logowanie  </li> <div class="przerwa"></div></a>
             
         </ul>
 

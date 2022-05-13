@@ -1,6 +1,7 @@
  <?php
-include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php'; 
 
 
 
@@ -41,7 +42,15 @@ $animalstreet = pdo($pdo,$sql)->fetchAll();
     <title>Znajdz zwierzaka</title>
 
     <?php include 'includes/loader.php'; ?>
-    <?php include 'includes/header.php'; ?>
+
+    <?php if (isset($_SESSION['role'])){ ?> 
+    <?php if($_SESSION['role'] == 'member'){ ?>
+    <?php include 'includes/headermember.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }}else{ ?> 
+    <?php include 'includes/header.php'; ?>    
+    <?php }?>
 </head>
 <body>
 

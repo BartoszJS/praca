@@ -1,5 +1,6 @@
 <?php
 define('DEV', true);  // In development or live? Development = true | Live = false
+define('DOMAIN', 'http://localhost:8888'); 
 
 // DOC_ROOT is created because the download code has several versions of the sample site
 // On a live site a single forward slash / would indicate the document root folder

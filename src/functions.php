@@ -16,6 +16,24 @@ function html_escape($text): string
     return htmlspecialchars($text, ENT_QUOTES, 'UTF-8', false); // Return escaped string
 }
 
+
+function is_member($role)
+{
+    if ($role !== 'admin' and $role !== 'member') {                                   // If role is not admin
+        header('Location: login.php');                                 // Send to home page
+        exit;                                                  // Stop code running
+    }
+}
+
+function is_admin($role)
+{
+    if ($role !== 'admin') {                                   // If role is not admin
+        header('Location: login.php');                       // Send to home page
+        exit;                                                  // Stop code running
+    }
+}
+
+
 function format_date(string $string): string
 {
     $date = date_create_from_format('Y-m-d H:i:s', $string);    // Convert to DateTime object

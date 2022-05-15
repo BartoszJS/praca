@@ -12,6 +12,9 @@ $animal=[];
 
 
 
+
+
+
     if(!$term){
         $count = 0;
         $sqlicz="SELECT COUNT(zwierze) from animal where zaginiony=1;";
@@ -112,6 +115,7 @@ $section='';
                 <input type="text" name="term" 
                     id="search" placeholder="Wpisz miasto:"  
                 /><input type="submit" value="Szukaj" class="btn btn-search" />
+                <a href="zglos.php" class="btn btn-search" >DODAJ</a>
         </form>
 
         

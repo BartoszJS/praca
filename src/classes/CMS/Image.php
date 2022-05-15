@@ -21,11 +21,30 @@ class Image
       return $this->db->runSql($sql,[$id])->fetch();    
     }
 
-    public function insertImage($arguments)
+
+
+
+
+    public function dodajImage($argumentsImage)
     { 
     $sql="INSERT INTO image(plik)
-        values (:plik);";
-    $this->db->runSql($sql,$arguments)->fetch();  
+    value (:plik);";
+  
+    try{
+    $this->db->runSql($sql,$argumentsImage)->fetch();  
+    }catch(PDOException $e){
+      throw $e;
+    }
+    }
+
+
+    public function lastIdImage()
+    { 
+        $sql=  "SELECT id
+        FROM image
+        order by id desc
+        limit 1;";
+     return $this->db->runSql($sql)->fetchColumn(); 
     }
  
    

@@ -1,12 +1,16 @@
 <?php
-include 'src/database-connection.php';                     // Database connection
-include 'src/functions.php';                               // Functions
-include 'src/validate.php'; 
+include 'src/bootstrap.php';    
+
+
+is_member($session->role);  
+
+
 $destination = '';                               // Validation functions
 
 $file_types      = ['plik/jpeg', 'plik/png', 'plik/gif',];      // Allowed file types
 $file_extensions = ['jpg', 'jpeg', 'png', 'gif',];                 // Allowed extensions
-$max_size        = '5242880';                                     // Max file size
+$max_size        = '5242880';       
+$arguments=[];                              // Max file size
 
 $upload_path = dirname(__FILE__).DIRECTORY_SEPARATOR. 'uploads'.DIRECTORY_SEPARATOR;
 
@@ -17,6 +21,8 @@ $animal['wielkosc']    ='';
 $animal['kolor']        ='';
 $animal['wojewodztwo']    ='';
 $animal['miasto']    ='';
+$animal['id_member']    ='';
+$animal['id_image']    ='';
 
 
 $errors['zwierze']    ='';
@@ -30,28 +36,16 @@ $errors['plik']    ='';
 $errors['warning'] ='';
 
 
+$lastImage = $cms->getImage()->lastIdImage();
+$lastImage=$lastImage+1; 
+
+
+
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
-
-  if ($_FILES['plik']['error'] === 0) {  
-
-    $temp = $_FILES['plik']['tmp_name'];
-    $path = 'uploads/' . $_FILES['plik']['name'];
-    $moved = move_uploaded_file($temp, $path);
-    $image['plik']    =$_FILES['plik']['name'];
-    $sql="INSERT INTO image(plik)
-    values (:plik);";
-    $arguments=$image;
   
-    try{
-      pdo($pdo,$sql,$arguments)  ;  
-    }catch(PDOException $e){
-      throw $e;
-    }
-}
-
 
 
   $animal['zwierze']    =$_POST['zwierze'];
@@ -61,45 +55,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $animal['kolor']    =$_POST['kolor'];
   $animal['wojewodztwo']    =$_POST['wojewodztwo'];
   $animal['miasto']    =$_POST['miasto'];
-
-    $errors['imie']  = is_text($animal['imie'], 1, 40)
-        ? '' : 'Imie musi miec od 1-40 znaków';
-    $errors['rasa']  = is_text($animal['rasa'], 1, 40)
-        ? '' : 'Rasa musi miec od 1-40 znaków';
-    $errors['kolor']  = is_text($animal['kolor'], 1, 40)
-        ? '' : 'Kolor musi miec od 1-40 znaków';
-    $errors['miasto']  = is_text($animal['miasto'], 1, 40)
-        ? '' : 'Miasto musi miec od 1-40 znaków';
-    $errors['zwierze']  = is_text($animal['zwierze'], 1, 40)
-        ? '' : 'Proszę wybrać opcję';
-    $errors['wojewodztwo']  = is_text($animal['wojewodztwo'], 1, 40)
-        ? '' : 'Proszę wybrać opcję';
-    $errors['wielkosc']  = is_text($animal['wielkosc'], 1, 40)
-        ? '' : 'Proszę wybrać opcję';
-
-    $invalid = implode($errors);
-
-    $lastId=13;
+  $animal['id_member']=$_POST['id_member'];
+  $animal['id_image']= $lastImage;
+ 
 
 
-    $sql="INSERT INTO animal(zwierze,imie,rasa,wielkosc,kolor,wojewodztwo,miasto,id_image,id_member,zaginiony)
-    values (:zwierze,:imie,:rasa,:wielkosc,:kolor,:wojewodztwo,:miasto,$lastId,4,1);";
-
+    $temp = $_FILES['plik']['tmp_name'];
+    $path = 'uploads/' . $_FILES['plik']['name'];
+    $moved = move_uploaded_file($temp, $path);
+    $image['plik']    =$_FILES['plik']['name'];
     
-  
-    $arguments=$animal;
+    $argumentsImage=$image;
 
-    try{
-      pdo($sql,$arguments)->fetch();  
-      
-      header("Location: animal.php?id=".$lastId); 
-      exit();
-    }catch(PDOException $e){
-      header("Location: nieznaleziono.php"); 
-      exit();
-      throw $e;
-    }
+
+    $cms->getImage()->dodajImage($argumentsImage); 
+
+ 
+    $arguments=$animal;
   
+    $cms->getAnimal()->dodajAnimal($arguments);  
+
+
 }
 
 ?>          
@@ -131,6 +107,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="ramka">
       <br>
       <h1>Zgłoszenie zaginionego zwierzaka</h1> <br>
+      
 
       <?php if ($errors['warning']) { ?>
         <div class="error"><?= $errors['warning'] ?></div>
@@ -143,6 +120,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
               accept="plik/jpeg,plik/jpg,plik/png"><br>
               <span class="errors"><?= $errors['plik'] ?></span>
             </div><br>
+
+            <input type="hidden" name="id_member" value="<?= $_SESSION['id'] ?>" > 
 
 
         <div class="form-group">

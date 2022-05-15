@@ -435,4 +435,19 @@ if (file_exists($destination)) {                     // If image file exists
 
  
 
-  
+   // $errors['imie']  = is_text($animal['imie'], 1, 40)
+    //     ? '' : 'Imie musi miec od 1-40 znaków';
+    // $errors['rasa']  = is_text($animal['rasa'], 1, 40)
+    //     ? '' : 'Rasa musi miec od 1-40 znaków';
+    // $errors['kolor']  = is_text($animal['kolor'], 1, 40)
+    //     ? '' : 'Kolor musi miec od 1-40 znaków';
+    // $errors['miasto']  = is_text($animal['miasto'], 1, 40)
+    //     ? '' : 'Miasto musi miec od 1-40 znaków';
+    // $errors['zwierze']  = is_text($animal['zwierze'], 1, 40)
+    //     ? '' : 'Proszę wybrać opcję';
+    // $errors['wojewodztwo']  = is_text($animal['wojewodztwo'], 1, 40)
+    //     ? '' : 'Proszę wybrać opcję';
+    // $errors['wielkosc']  = is_text($animal['wielkosc'], 1, 40)
+    //     ? '' : 'Proszę wybrać opcję';
+
+    // $invalid = implode($errors);

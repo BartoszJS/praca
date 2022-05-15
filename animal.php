@@ -1,12 +1,15 @@
 <?php
-include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php'; 
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT); // Validate id
 if (!$id) {     
     header("Location: page-not-found.php");  
     exit();                                         // If no valid id
 }
+
+
 
 $sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
     animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,
@@ -32,7 +35,14 @@ if (!$animal) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Zwierze</title>
     <?php include 'includes/loader.php'; ?>
-    <?php include 'includes/header.php'; ?>
+    <?php if (isset($_SESSION['role'])){ ?> 
+    <?php if($_SESSION['role'] == 'member'){ ?>
+    <?php include 'includes/headermember.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }}else{ ?> 
+    <?php include 'includes/header.php'; ?>    
+    <?php }?>
 </head>
 <body>
     <div class="zwierze"><br>

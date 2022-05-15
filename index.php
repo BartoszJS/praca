@@ -5,28 +5,8 @@ include 'src/validate.php';
 
 
 
-$sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
-    animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
-    image.plik
-    FROM animal
-    join image on animal.id_image = image.id 
-    where animal.zaginiony = 1   
-    order by animal.id DESC
-    limit 6;";
-$animal = pdo($pdo,$sql)->fetchAll();
+$animal = $cms->getAnimal()->getAnimalIndex();
 
-
-
-
-$sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
-    animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
-    image.plik
-    FROM animal
-    join image on animal.id_image = image.id 
-    where animal.zaginiony = 0 
-    order by animal.id DESC
-    limit 6;";
-$animalstreet = pdo($pdo,$sql)->fetchAll();
 
 
 ?> 
@@ -42,7 +22,6 @@ $animalstreet = pdo($pdo,$sql)->fetchAll();
     <title>Znajdz zwierzaka</title>
 
     <?php include 'includes/loader.php'; ?>
-
     <?php if (isset($_SESSION['role'])){ ?> 
     <?php if($_SESSION['role'] == 'member'){ ?>
     <?php include 'includes/headermember.php'; ?>
@@ -50,7 +29,8 @@ $animalstreet = pdo($pdo,$sql)->fetchAll();
     <?php include 'includes/headeradmin.php'; ?>
     <?php }}else{ ?> 
     <?php include 'includes/header.php'; ?>    
-    <?php }?>
+    <?php }?>   
+   
 </head>
 <body>
 
@@ -87,40 +67,6 @@ $animalstreet = pdo($pdo,$sql)->fetchAll();
                 <?php } ?>
             
         
-            <div class="naglowek">
-                 <div class="pojebany"> .</div> 
-                <h1> Bezdomne zwierzęta:</h1>
-            </div>
-        
-            <?php foreach($animalstreet as $pojedynczo) { ?> 
-                <div class="baza"><br>
-                    <div class="ramka">
-                        <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
-                            <p> 
-                                <div class="teksty">
-                                    Miejsce zaginięcia: <br> 
-                                    <i class="fa fa-map-marker" aria-hidden="true"></i> 
-                                    <?= html_escape($pojedynczo['miasto'])?>
-                                    <?php $datem = strtotime($pojedynczo['czas']);
-                                        $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?>
-                                        <br>
-                                </div>
-                                    
-                                <div class="column">
-                                        <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
-                                </div> 
-                                <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
-                                <div class="calendar"><i class="fa fa-calendar"></i><?= $wlasciwa ?></div> 
-                                    
-                                    
-                                
-                            </p>
-                                
-                        </a>
-                    </div>
-                </div>
-            <?php } ?>
-            
     </div>
 <?php include 'includes/footer.php'; ?>
 <script src="script.js"></script> 

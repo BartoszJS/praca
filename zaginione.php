@@ -1,7 +1,8 @@
 <?php
 declare(strict_types = 1);
-include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php'; 
 
 $term  = filter_input(INPUT_GET, 'term');                 // Get search term
 $show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit
@@ -89,7 +90,14 @@ $section='';
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Zaginione</title>
     <?php include 'includes/loader.php'; ?>
-    <?php include 'includes/header.php'; ?>
+    <?php if (isset($_SESSION['role'])){ ?> 
+    <?php if($_SESSION['role'] == 'member'){ ?>
+    <?php include 'includes/headermember.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }}else{ ?> 
+    <?php include 'includes/header.php'; ?>    
+    <?php }?>
 </head>
 <body>
 <br><br>

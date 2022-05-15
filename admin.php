@@ -1,6 +1,7 @@
 <?php
-include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php'; 
 
 
 

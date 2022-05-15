@@ -1,7 +1,7 @@
 <?php
-include 'includes/database-connection.php'; 
-include 'includes/functions.php'; 
-include 'includes/validate.php';  
+include 'src/database-connection.php';                     // Database connection
+include 'src/functions.php';                               // Functions
+include 'src/validate.php'; 
 $destination = '';                               // Validation functions
 
 $file_types      = ['plik/jpeg', 'plik/png', 'plik/gif',];      // Allowed file types
@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-  $lastId=$pdo->lastInsertId();
+
 
   $animal['zwierze']    =$_POST['zwierze'];
   $animal['imie']    =$_POST['imie'];
@@ -79,24 +79,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $invalid = implode($errors);
 
-    if ($invalid) {                                              // If invalid
-      $errors['warning'] = 'Popraw poniższe błędy';  // Store message
-  } else {
+    $lastId=13;
+
 
     $sql="INSERT INTO animal(zwierze,imie,rasa,wielkosc,kolor,wojewodztwo,miasto,id_image,id_member,zaginiony)
-    values (:zwierze,:imie,:rasa,:wielkosc,:kolor,:wojewodztwo,:miasto,$lastId,2,1);";
+    values (:zwierze,:imie,:rasa,:wielkosc,:kolor,:wojewodztwo,:miasto,$lastId,4,1);";
+
+    
   
     $arguments=$animal;
 
     try{
-      pdo($pdo,$sql,$arguments)  ;  
-      $lastAnimal=$pdo->lastInsertId();
-      header("Location: animal.php?id=".$lastAnimal); 
+      pdo($sql,$arguments)->fetch();  
+      
+      header("Location: animal.php?id=".$lastId); 
       exit();
     }catch(PDOException $e){
+      header("Location: nieznaleziono.php"); 
+      exit();
       throw $e;
     }
-  }
+  
 }
 
 ?>          
@@ -111,7 +114,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Zgłoś zaginięcie zwierzaka</title>
     <?php include 'includes/loader.php'; ?>
-    <?php include 'includes/header.php'; ?>
+    <?php if (isset($_SESSION['role'])){ ?> 
+    <?php if($_SESSION['role'] == 'member'){ ?>
+    <?php include 'includes/headermember.php'; ?>
+    <?php }elseif($_SESSION['role'] == 'admin'){ ?>
+    <?php include 'includes/headeradmin.php'; ?>
+    <?php }}else{ ?> 
+    <?php include 'includes/header.php'; ?>    
+    <?php }?>
 </head>
 <body>
 

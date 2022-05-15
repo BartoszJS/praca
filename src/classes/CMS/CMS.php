@@ -6,8 +6,8 @@ class CMS
     protected $db        = null;                                        
     protected $member    = null;                        
     protected $session   = null;                              
-    protected $car   = null;                              
-    protected $rent   = null;                              
+    protected $animal   = null;                                                         
+    protected $image   = null;                                                         
                   
 
     public function __construct($dsn, $username, $password)
@@ -34,19 +34,20 @@ class CMS
     }
 
 
-    public function getCar()
+    public function getAnimal()
     {
-        if ($this->car === null) {                     // If $car property null
-            $this->car = new Car($this->db);         // Create Token object
+        if ($this->animal === null) {                     // If $animal property null
+            $this->animal = new Animal($this->db);         // Create Token object
         }
-        return $this->car;                             // Return Token object
+        return $this->animal;                             // Return Token object
     }
-    public function getRent()
+    
+    public function getImage()
     {
-        if ($this->rent === null) {                     // If $rent property null
-            $this->rent = new Rent($this->db);         // Create Token object
+        if ($this->image === null) {                     // If $image property null
+            $this->image = new Image($this->db);         // Create Token object
         }
-        return $this->rent;                             // Return Token object
+        return $this->image;                             // Return Token object
     }
 
 

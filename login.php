@@ -78,7 +78,7 @@ $data['errors']     = $errors;
     <?php }else{ ?> 
     <?php include 'includes/headermember.php'; ?>    
     <?php }?>*/?> 
-        <?php if (isset($_SESSION['role'])){ ?> 
+    <?php if (isset($_SESSION['role'])){ ?> 
     <?php if($_SESSION['role'] == 'member'){ ?>
     <?php include 'includes/headermember.php'; ?>
     <?php }elseif($_SESSION['role'] == 'admin'){ ?>

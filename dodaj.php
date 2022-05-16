@@ -1,3 +1,15 @@
+<?php
+include 'src/bootstrap.php';    
+include 'src/database-connection.php'; 
+include 'src/validate.php'; 
+
+
+
+
+
+?> 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

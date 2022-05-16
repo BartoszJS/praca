@@ -830,3 +830,71 @@ svg {
 
 
 /* logowanie koneic*/
+/* myaccount*/
+
+.myaccount{
+   padding-top: 100px;
+   width: 100%;
+   background-color: white;
+   border-top: 1px solid green;
+   border-bottom: 1px solid green;
+}
+
+.myaccount .ramka{
+   width: 70%;
+padding: 50px;
+}
+.konto .zapisane{
+   justify-content: center;
+   text-align: center;
+   border-top: 1px solid green;
+   border-left: 1px solid green;
+   border-right: 1px solid green;
+   border-bottom: 1px solid green;
+padding: 10px;
+background-color: white;
+width: 30%;
+float: left;
+margin-left: 18%;
+border-radius: 10px 10px 0px 0px;
+display: flex;
+margin-bottom: -1px;
+
+}
+.konto .dodane{
+   justify-content: center;
+   text-align: center;
+border-top: 1px solid green;
+border-left: 1px solid green;
+border-right: 1px solid green;
+border-bottom: 1px solid white;
+padding: 10px;
+background-color: white;
+width: 30%;
+float: right;
+margin-right: 18%;
+display: flex;
+margin-bottom: -1px;
+border-radius: 10px 10px 0px 0px;
+
+}
+
+
+
+.konto .tekst{
+   clear: both;
+   width: 80%;
+   background-color: white;
+   margin-left: auto;
+   margin-right: auto;
+   border-bottom: 1px solid green;
+   border-left: 1px solid green;
+   border-right: 1px solid green;
+   border-top: 1px solid green;
+
+
+}
+
+
+
+/* myaccount koniec*/

@@ -19,7 +19,7 @@
             <a class="active" href="zaginione.php"><li><i class="fa fa-search"></i> <br> Zaginione zwierzęta <div class="przerwa"><br></div></li> </a>
             <a class="active" href="bezpanskie.php"><li><i class="fa fa-search"></i> <br> Bezdomne zwierzęta  <div class="przerwa"><br></div></li> </a>
             <a class="active" href="members.php"><li><i class="fa fa-search"></i> <br> Użytkownicy  <div class="przerwa"><br></div></li> </a>
-            <a class="active" href="dodaj.php"><li><i class="fa fa-sign-in"></i> <br>Moje konto  </li> <div class="przerwa"></div></a>
+            <a class="active" href="myaccount.php"><li><i class="fa fa-sign-in"></i> <br>Moje konto  </li> <div class="przerwa"></div></a>
             <a class="active" href="logout.php"><li><i class="fa fa-search"></i> <br> Wyloguj się  <div class="przerwa"><br></div></li> </a>
         </ul>
 

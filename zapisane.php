@@ -43,15 +43,17 @@ $animal = $cms->getAnimal()->getAnimalIndex();
             </div>
         </div>
         <br><br>
-        <div class="zapisanee">
+       
+        <a href="myaccount.php">
+    <div class="zapisane">
             <h3>Dodane zwierzeta</h3>
         </div>
         </a>
-        <a href="zapisane.php">
-        <div class="dodanee">
+            
+        <div class="dodane">
             <h3>Zapisane zwierzęta</h3>
         </div>
-        </a>
+       
         <div class="tekst">
             <?php foreach($animal as $pojedynczo) { ?> 
                 <?= $pojedynczo['id']; ?><br>

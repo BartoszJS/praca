@@ -845,13 +845,14 @@ svg {
 padding: 50px;
 }
 .konto .zapisane{
+   color: black;
    justify-content: center;
    text-align: center;
    border-top: 1px solid green;
    border-left: 1px solid green;
    border-right: 1px solid green;
    border-bottom: 1px solid green;
-padding: 10px;
+padding: 15px;
 background-color: white;
 width: 30%;
 float: left;
@@ -862,13 +863,14 @@ margin-bottom: -1px;
 
 }
 .konto .dodane{
+   color: black;
    justify-content: center;
    text-align: center;
 border-top: 1px solid green;
 border-left: 1px solid green;
 border-right: 1px solid green;
 border-bottom: 1px solid white;
-padding: 10px;
+padding: 15px;
 background-color: white;
 width: 30%;
 float: right;
@@ -877,6 +879,50 @@ display: flex;
 margin-bottom: -1px;
 border-radius: 10px 10px 0px 0px;
 
+}
+.konto .zapisanee{
+   color: black;
+   justify-content: center;
+   text-align: center;
+   border-top: 1px solid green;
+   border-left: 1px solid green;
+   border-right: 1px solid green;
+   border-bottom: 1px solid white;
+padding: 15px;
+background-color: white;
+width: 30%;
+float: left;
+margin-left: 18%;
+border-radius: 10px 10px 0px 0px;
+display: flex;
+margin-bottom: -1px;
+
+}
+.konto .dodanee{
+   color: black;
+   justify-content: center;
+   text-align: center;
+border-top: 1px solid green;
+border-left: 1px solid green;
+border-right: 1px solid green;
+border-bottom: 1px solid green;
+padding: 15px;
+background-color: white;
+width: 30%;
+float: right;
+margin-right: 18%;
+display: flex;
+margin-bottom: -1px;
+border-radius: 10px 10px 0px 0px;
+
+
+}
+.konto .dodanee:hover{
+  color: #008200;
+
+}
+.konto .zapisane:hover{
+  color: #008200;
 }
 
 

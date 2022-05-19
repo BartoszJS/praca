@@ -68,20 +68,7 @@ class Animal
     }
 }
 
-public function getMembersAnimal($id)
-{ 
 
-$sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
-animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
-image.plik
-FROM animal
-join image on animal.id_image = image.id 
-where animal.id_member = :id   
-order by animal.id DESC;";
-
-
-return $this->db->runSql($sql,[$id])->fetchAll();     
-}
 
 
     

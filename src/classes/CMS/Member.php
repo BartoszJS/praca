@@ -113,4 +113,43 @@ class Member
         $this->db->runSQL($sql, ['id' => $id, 'haslo' => $hash,]); // Run SQL
         return true;                                                  // Return true
     }
+
+
+
+
+
+
+
+
+
+
+
+    public function getMembersAnimal($id)
+{ 
+
+$sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
+animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
+image.plik
+FROM animal
+join image on animal.id_image = image.id 
+where animal.id_member = :id   
+order by animal.id DESC;";
+
+
+return $this->db->runSql($sql,[$id])->fetchAll();     
+}
+
+public function getAnimalsMember($id)
+{ 
+
+    $sql="SELECT id,imie,nazwisko,email,telefon
+    FROM member
+    where id = :id ;";
+
+
+return $this->db->runSql($sql,[$id])->fetch();     
+}
+
+
+
 }

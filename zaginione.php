@@ -131,15 +131,18 @@ $section='';
                     <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
                 </div> 
             <div class="tekst">
-                                        Miejsce zaginięcia: <br> 
-                                        <i class="fa fa-map-marker" ></i> <?= html_escape($pojedynczo['miasto']).', '.html_escape($pojedynczo['wojewodztwo'])?>
+            <?= "Rasa: ".$pojedynczo['rasa'] ?><br><br>
+
+                Miejsce zaginięcia: <br>
+                <i class="fa fa-map-marker" ></i> <?= html_escape($pojedynczo['miasto']).', '.html_escape($pojedynczo['wojewodztwo'])?><br><br>
                                         
                                         <?php $datem = strtotime($pojedynczo['czas']);
                                         $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?>
                                           
-                                        <div class="calendar"><i class="fa fa-calendar"></i><?= $wlasciwa ?></div> 
+                                        <div class="calendar"><i class="fa fa-calendar"></i><?= "Data dodania: ".$wlasciwa ?></div> 
                     
             </div>   
+
                 
               
             

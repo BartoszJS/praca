@@ -5,7 +5,7 @@ is_member($session->role);
 
 
 $id = $_SESSION['id'];
-$animal = $cms->getAnimal()->getMembersAnimal($id);
+$animal = $cms->getMember()->getMembersAnimal($id);
 
 
 ?> 

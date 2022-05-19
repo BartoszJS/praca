@@ -99,34 +99,9 @@ $section='';
     <br><br>
     <h3> Bezpańskie zwierzęta</h3>
     <br>
-    <form action="bezpanskie.php" method="get" class="form-search">
-            <label for="search"><span> </span></label>
-            <input type="text" name="term" 
-                id="search" placeholder="Wpisz miasto:"  
-            /><input type="submit" value="Szukaj" class="btn btn-search" />
-    </form>
-   
-    <br>
-    
-
-        <?php if ($term) { ?><p><b>Znaleziono:</b> <?= $count ?></p><?php } ?>
-        <?php if (!$term) { ?><p><b>Najnowsze dodane <br> bezpańskie zwierzęta:</b></p><?php } ?>
-    <br>
-    <?php foreach($animal as $pojedynczo) { ?> 
-
-        <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
-                                    <?= html_escape($pojedynczo['miasto'])?>
-                                    <?= html_escape($pojedynczo['wojewodztwo'])?>
-                                    <br>
-                    
-                    <div class="column">
-                        <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
-                    </div> 
-                    <br>
-        </a>
-
-
-<?php }?>
+   <div class="shadow">
+       
+   </div>
 
 </div>
 

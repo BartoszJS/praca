@@ -103,9 +103,7 @@ $section='';
     <?php }?>
 </head>
 <body>
-<br><br>
 <div class="wyszukanie">
-<br>
     <div class="place">
     
     <h3> Zaginione zwierzęta </h3>

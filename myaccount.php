@@ -1,10 +1,11 @@
 <?php
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php'; 
+
+is_member($session->role);  
 
 
-$animal = $cms->getAnimal()->getAnimalIndex();
+$id = $_SESSION['id'];
+$animal = $cms->getAnimal()->getMembersAnimal($id);
 
 
 ?> 
@@ -54,12 +55,22 @@ $animal = $cms->getAnimal()->getAnimalIndex();
         </a>
         <div class="tekst">
             <?php foreach($animal as $pojedynczo) { ?> 
-                <?= $pojedynczo['id']; ?><br>
-                <?= $pojedynczo['imie']; ?><br>
-                <?= $pojedynczo['rasa']; ?><br>
+                <div class="animalcontainer">
+                    <div class="photo">
+                        <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
+                    </div>
+                    <div class="opis">
+                        <?= "ID: ".$pojedynczo['id']; ?><br><br>
+                        <?= "Imie: ".$pojedynczo['imie']; ?><br><br>
+                        <?= "Rasa: " .$pojedynczo['rasa']; ?><br><br>
+                        <?= "Miejsce zaginięcia: " .$pojedynczo['miasto'].", ".$pojedynczo["wojewodztwo"]; ?><br><br>
+                        <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
+                    </div>
+                    
+                </div>
             <?php } ?> 
 
-            <br><br><br><br>
+            
         </div>
 
     </div>

@@ -430,43 +430,7 @@ footer {
 
 }
 
-@media(max-width:1250px) {
-   .baza {
-      width: 50%;
-   }
 
-   .zaginione {
-      padding-top: 90px;
-   }
-}
-
-
-@media(max-width:1110px) {
-   .baza {
-      width: 50%;
-   }
-
-   .zaginione {
-      padding-top: 90px;
-   }
-}
-
-@media(max-width:1000px) {
-   .zaginione {
-      padding-top: 0px;
-   }
-}
-
-@media(max-width:750px) {
-   .zaginione {
-      padding-top: 0px;
-   }
-
-   .baza {
-      width: 100%;
-   }
-
-}
 
 
 .baza .column .image-resize {
@@ -477,11 +441,13 @@ footer {
 /* BAZA */
 
 .wyszukanie {
+   padding-top: 90px;
    text-align: center;
    margin: auto;
    width: 100%;
    font-size: 24px;
    color: black;
+   
 }
 
 .wyszukanie .ramka {
@@ -491,12 +457,12 @@ footer {
    height: 550px;
    background-color: white;
    padding: 30px;
-   border-top: 1px solid #009500;
-   border-bottom: 1px solid #009500;
+   border: 1px solid green;
    border-radius: 5px 5px 5px 5px;
    box-shadow: var(--box-shadow);
    padding-left: 10%;
    padding-right: 10%;
+   width: 80%;
 
 }
 /* .wyszukanie h3{
@@ -593,7 +559,7 @@ footer {
 }  */
 .image-resize {
    height: 28rem;
-   width: 80%;
+   width: 100%;
    border-radius: 1%;
    overflow: hidden;
    object-position: center center;
@@ -841,8 +807,10 @@ svg {
 }
 
 .myaccount .ramka{
-   width: 70%;
-padding: 50px;
+padding: 30px;
+padding-left: 19%;
+line-height: 25px;
+font-size: 16px;
 }
 .konto .zapisane{
    color: black;
@@ -927,7 +895,10 @@ border-radius: 10px 10px 0px 0px;
 
 
 
+
+
 .konto .tekst{
+
    clear: both;
    width: 80%;
    background-color: white;
@@ -940,7 +911,102 @@ border-radius: 10px 10px 0px 0px;
 
 
 }
+.konto .tekst .animalcontainer:last-child{
+   border-bottom: none;
+   
+
+
+}
+.konto .tekst .animalcontainer{
+   width: 100%;
+   border-bottom: 1px solid green;
+   padding: 5%;
+   height: 480px;
+
+
+}
+.konto .tekst .animalcontainer .photo{
+   width: 48%;
+
+
+
+}
+.konto .tekst .animalcontainer .photo .image-resize{
+   height: 350px;
+   float: left;
+
+}
+.konto .tekst .animalcontainer .opis{
+   padding-top: 20px;
+   float: left;
+   padding-left: 5%;
+   width: 40%;
+   
+}
+
 
 
 
 /* myaccount koniec*/
+
+
+@media(max-width:1250px) {
+   .baza {
+      width: 50%;
+   }
+
+   .zaginione {
+      padding-top: 90px;
+   }
+}
+
+
+@media(max-width:1110px) {
+   .baza {
+      width: 50%;
+   }
+
+   .zaginione {
+      padding-top: 90px;
+   }
+}
+
+@media(max-width:1000px) {
+   .zaginione {
+      padding-top: 0px;
+   }
+   .myaccount{
+      padding-top: 0px;
+   }
+   .wyszukanie{
+      padding-top: 0px;
+   }
+}
+
+@media(max-width:750px) {
+   .zaginione {
+      padding-top: 0px;
+   }
+
+   .baza {
+      width: 100%;
+   }
+   .konto .tekst .animalcontainer .photo{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      float: right;
+   }
+   .konto .tekst .animalcontainer .opis{
+      
+      width: 100%;
+      
+   }
+   .konto .tekst .animalcontainer{
+      height: 600px;
+   
+   
+   }
+
+
+}

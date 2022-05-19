@@ -155,7 +155,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div><br>
 
         <div class="form-group">
-          <label for="title">Kolor zwierzaka: </label>
+          <label for="title">Znaki szczególne: </label>
           <input type="text" name="kolor" id="kolor" value="<?= html_escape($animal['kolor']) ?>"
                  class="form-control">
                  <span class="errors"><?= $errors['kolor'] ?></span>

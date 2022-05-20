@@ -5,6 +5,7 @@ include 'src/database-connection.php';
 include 'src/validate.php'; 
 
 $term  = filter_input(INPUT_GET, 'term');                 // Get search term
+$term2  = filter_input(INPUT_GET, 'term2');                 // Get search term
 $show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit
 $from  = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0; // Offset
 $count = 0;
@@ -15,7 +16,7 @@ $animal=[];
 
 
 
-    if(!$term){
+    if(!$term and !$term2){
         $count = 0;
         $sqlicz="SELECT COUNT(zwierze) from animal where zaginiony=1;";
         $count = pdo($pdo, $sqlicz)->fetchColumn();
@@ -36,9 +37,43 @@ $animal=[];
         }
     }
 
+if(($term!="") and ($term!="")){
+
+    $arguments['term1'] ='%'.$term.'%'; 
+    $arguments['term2'] ='%'.$term2.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
 
 
-if($term){
+    $sql="SELECT COUNT(zwierze) from animal 
+    where wojewodztwo     like :term2
+    and miasto     like :term1;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
+                animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
+                image.plik
+                FROM animal
+                join image on animal.id_image = image.id 
+                where animal.wojewodztwo like :term2
+                and animal.miasto like :term1
+                order by animal.id asc
+                limit :show
+                OFFSET :from;";
+        
+        $animal = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+
+
+}else if($term){
     
     $arguments['term1'] ='%'. $term .'%'; 
     // $arguments['term2'] ='%'.$term.'%';            // three times as placeholders
@@ -72,6 +107,42 @@ if($term){
         $animal = pdo($pdo, $sql, $arguments)->fetchAll();
 
     }
+
+}else if($term2){
+    
+    $arguments['term2'] ='%'. $term2 .'%'; 
+    // $arguments['term2'] ='%'.$term.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
+
+
+    $sql="SELECT COUNT(zwierze) from animal 
+    where zaginiony=1 
+    and wojewodztwo     like :term2;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
+                animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
+                image.plik
+                FROM animal
+                join image on animal.id_image = image.id 
+                where animal.zaginiony = 1
+                and animal.wojewodztwo like :term2
+                order by animal.id asc
+                limit :show
+                OFFSET :from;";
+        
+        $animal = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+
 }
 
 if ($count > $show) {                                     // If matches is more than show
@@ -92,7 +163,7 @@ $section='';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     <title>Zaginione</title>
-    <?php include 'includes/loader.php'; ?>
+    <?php //include 'includes/loader.php'; ?>
     <?php if (isset($_SESSION['role'])){ ?> 
     <?php if($_SESSION['role'] == 'member'){ ?>
     <?php include 'includes/headermember.php'; ?>
@@ -105,23 +176,67 @@ $section='';
 <body>
 <div class="wyszukanie">
     <div class="place">
+        
     
-    <h3> Zaginione zwierzęta </h3>
+  
     <br>
+    <div class="szukajbtn">
+        <h4>Wyszukaj zwierzaka: </h4>
         <form action="zaginione.php" method="get" class="form-search">
                 <label for="search"><span> </span></label>
+
+                <select name="term2" id="wojewodztwo" >
+                    <label ><option name=""  value="" disabled selected hidden> - Wybierz województwo - <br></label>
+                    <label ><option name="zachodnio-pomorskie"  value="zachodnio-pomorskie"> Zachodnio-pomorskie <br></label>
+                    <label ><option name="pomorskie"            value="pomorskie"> Pomorskie <br></label>
+                    <label ><option name="warmińsko-mazurskie"  value="warmińsko-mazurskie"> Warmińsko-mazurskie <br></label>
+                    <label ><option name="podlaskie"            value="podlaskie"> Podlaskie <br></label>
+                    <label ><option name="lubuskie"             value="lubuskie"> Lubuskie <br></label>
+                    <label ><option name="wielkopolskie"        value="wielkopolskie"> Wielkopolskie <br></label>
+                    <label ><option name="kujawsko-pomorskie"   value="kujawsko-pomorskie"> Kujawsko-pomorskie <br></label>
+                    <label ><option name="mazowieckie"          value="mazowieckie"> Mazowieckie <br></label>
+                    <label ><option name="lubelskie"            value="lubelskie"> Lubelskie <br></label>
+                    <label ><option name="świetokrzyskie"       value="świetokrzyskie"> Świetokrzyskie <br></label>
+                    <label ><option name="łódzkie"              value="łódzkie"> Łódzkie <br></label>
+                    <label ><option name="dolnośląskie"         value="dolnośląskie"> Dolnośląskie <br></label>
+                    <label ><option name="opolskie"             value="opolskie"> Opolskie <br></label>
+                    <label ><option name="śląskie"              value="śląskie"> Śląskie <br></label>
+                    <label ><option name="małopolskie"          value="małopolskie"> Małopolskie <br></label>
+                    <label ><option name="podkarpackie"         value="podkarpackie"> Podkarpackie <br></label>
+                </select>
+
+                <?php if(isset($term)){
+                    ?>
+                
+
                 <input type="text" name="term" 
-                    id="search" placeholder="Wpisz miasto:"  
-                /><input type="submit" value="Szukaj" class="btn btn-search" />
-                <a href="zglos.php" class="btn btn-search" >DODAJ</a>
+                    id="search" placeholder="Wpisz miasto:" value="<?= html_escape($term)?>"
+                />
+                <?php } else {?>
+                    <input type="text" name="term" 
+                    id="search" placeholder="Wpisz miasto:" value=""
+                />
+                <?php } ?>
+
+                <input type="submit" value="Szukaj" class="btn btn-search" />
+
+                </div>
+              
+
+          
+          <div class="dodajbtn">
+                <a href="zglos.php" class="btn btn-search" >DODAJ ZWIERZAKA</a>
+            </div>
         </form>
 
         
 
-            <?php if ($term) { ?><p><b>Znaleziono:</b> <?= $count ?></p><?php } ?>
+          
             <?php /* if (!$term) { ?><p><b>Najnowsze zaginione zwierzęta:</b></p><?php } */ ?>
     </div>
     <br>
+    <h3> Zaginione zwierzęta:   <?php if ($term) { ?><p><b>Znaleziono:</b> <?= $count ?></p><?php }elseif ($term2) { ?>
+    <p><b>Znaleziono:</b> <?= $count ?></p><?php } ?>  </h3>
     <?php foreach($animal as $pojedynczo) { ?> 
         <div class="ramka">
 

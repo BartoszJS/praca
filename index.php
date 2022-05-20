@@ -34,8 +34,8 @@ $animal = $cms->getAnimal()->getAnimalIndex();
 </head>
 <body>
 
-        
-    <div class="zaginione">      
+       <div class="paddingtop"></div>
+    <div class="index">      
         <h1>Najnowsze zaginione zwierzęta:</h1>
             
                 <?php foreach($animal as $pojedynczo) { ?> 
@@ -67,6 +67,37 @@ $animal = $cms->getAnimal()->getAnimalIndex();
                 <?php } ?>
             
         
+    </div>
+    <div class="index">
+    <h1>Najnowsze zaginione zwierzęta:</h1>
+            
+            <?php foreach($animal as $pojedynczo) { ?> 
+                <div class="baza"><br>
+                    <div class="ramka">
+                        <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
+                            <p> 
+                                <div class="teksty">           
+                                    Miejsce zaginięcia: <br> 
+                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                         <?= html_escape($pojedynczo['miasto'])?> 
+                                        <?php $datem = strtotime($pojedynczo['czas']);
+                                            $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?><br>
+                                </div>
+                                            
+                                <div class="column">
+                                    <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
+                                </div> 
+                                <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
+                                <div class="calendar"><i class="fa fa-calendar"></i><?= $wlasciwa ?></div> 
+                                            
+                                            
+                                        
+                            </p>
+                                        
+                        </a>
+                    </div>
+                </div>
+            <?php } ?>
     </div>
 <?php include 'includes/footer.php'; ?>
 <script src="script.js"></script> 

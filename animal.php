@@ -86,9 +86,9 @@ $member = $cms->getMember()->getAnimalsMember($idmember);
                     <br>
                     <div class="tekscior">
                     <h3>Dane osoby zgłaszającej:</h3><br>
-                        <?= "Imie: ".$member['imie'] ?><br>
-                        <?= "E-mail: ".$member['email'] ?><br>
-                        <?= "Telefon: ".$member['telefon'] ?><br>
+                    <i class="fa fa-user" aria-hidden="true"></i><?= "Imie: ".$member['imie'] ?><br>
+                        <i class="fa fa-envelope" aria-hidden="true"></i><?= "E-mail: ".$member['email'] ?><br>
+                        <i class="fa fa-phone-square" aria-hidden="true"></i><?= "Telefon: ".$member['telefon'] ?><br>
                     </div>
                 
                 </div>

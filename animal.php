@@ -75,6 +75,8 @@ $member = $cms->getMember()->getAnimalsMember($idmember);
             </div>   
             <div class="przerwa">
 
+
+            
             </div>
             <div class="zglos">
                 Widziałeś/widziałaś to zwierzę? <br>

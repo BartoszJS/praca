@@ -12,6 +12,10 @@
 
 }
 
+html{
+   scroll-behavior: smooth;
+}
+
 
 :root{
    --box-shadow: 0.4rem 0.5rem .5rem rgba(8, 0, 0, 0.1);
@@ -56,6 +60,13 @@ body {
    display: table;
    float: left;
    /* border: solid black; */
+}
+
+.lastbutton{
+   margin-top: 1200px;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
 }
 
 .logo_container h1 {
@@ -353,57 +364,150 @@ footer {
 }
 */
 
+
+.banner-area{
+   width: 100%;
+   height: 100vh;
+    background:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)), url(dog1.jpg);
+    background-size: cover;
+    background-position: right;
+    border-bottom: 1px solid black;
+}
+.content-area{
+   height: 180%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+}
+
+.content1{
+   text-align: center;
+   margin-right: 185%;
+   
+}
+
+.content-area{
+
+}
+
+.content2{
+   width:65%;
+   padding-top: 12%;
+  text-align: center;
+   float: left;
+
+   font-size: 40px;
+   color: white;
+   text-shadow: 1px 1px 5px #ffffff;
+   
+}
+
+#znajdz{
+   font-size: 40px;
+   font-weight: 500;
+}
+#znajdz2{
+   font-size: 22px;
+   text-shadow: none;
+   font-weight: 400;
+}
+
+
+
+
 .paddingtop{
    padding-top: 90px;
 }
 
 .index {
    padding-top: 0px;
-   height: 950px;
-   background-color: #f6f6f6;
+   height: 1450px;
+   background-color: #ffffff;
+   width: 90%;
+   margin-left: auto;
+   margin-right: auto;
+   border: 1px solid grey;
+   border-radius: 0px 0px 5px 5px;
+   box-shadow: var(--box-shadow);
+   
 }
 
 
-
-.index h1 {
-   text-align: center;
-   border-top: 1px solid #009500;
-   border-bottom: 1px solid #009500;
+.tytul {
+   margin-left: 6%;
+   text-align: left;
    width: 100%;
-   padding: 32px;
-   background-color: white;
-   box-shadow: var(--box-shadow);
+   padding: 10px;
+   text-shadow: 1px 1px 1px #969696;
    
 }
 
 
 
 .baza .teksty {
-   padding-left: 10%;
-   text-align: left;
+   text-align: center;
    font-size: 18px;
    text-transform: capitalize;
-   color: black;
+   color: white;
+   position: absolute;
+   width: 32%;
+
+   margin-left: 4%;
 
 
 }
 
 .baza .ramka .imie {
-   text-align: left;
+   text-align: center;
    font-size: 22px;
-   padding-left: 10%;
+   padding:5px;
+   float: right;
+   width: 100%;
+   color: white;
    float: left;
-   width: 50%;
-   color: black;
+   background-color: rgba(0, 0, 0, 0.485);
+   color: white;
+   width: 100%;
+   border-radius: 5px 5px 5px 5px;
+   
+
+
 }
+
+
+
 
 .baza .ramka .calendar {
 
-   text-align: right;
-   padding-right: 10%;
-   color: black;
-   padding-top: 1%;
+   width: 30%;
+   
+   text-align: left;  
+   margin-top: 232px; 
+   color: white;
+   float: right;
+   text-align: center;
+   background-color: rgba(0, 0, 0, 0.485);
+   padding: 4px;
+   border-radius: 5px 5px 5px 5px;
+
 }
+
+
+.baza .ramka .city {
+
+   width: 30%;  
+   margin-top: 232px;
+   text-align: center;
+   color: white;
+   float: left;
+   background-color: rgba(0, 0, 0, 0.485);
+   padding: 4px;
+   border-radius: 5px 5px 5px 5px;
+
+
+}
+
 .baza .ramka .calendar .fa-calendar{
    padding-right: 1%;
 }
@@ -414,7 +518,7 @@ footer {
 
 .baza {
    float: left;
-   width: 33.33%;
+   width: 50%;
     /* border: 2px solid red;   */
 
 
@@ -423,14 +527,13 @@ footer {
 
 .baza .ramka {
    padding: 1px;
-   background-color: white;
    border-radius: 0%;
    padding-top: 20px;
    padding-bottom: 20px;
    margin: 40px;
-   box-shadow: var(--box-shadow);
-   border-top: 1px solid green;
-   border-bottom: 1px solid green;
+ 
+   border-radius: 5px 5px 5px 5px;
+  
   
 
 
@@ -441,17 +544,24 @@ footer {
 
 
 }
+
 .baza .image-resize{
-   height: 200px;
-   width: 100%;
+   height: 300px;
+   width: 81%;
    float: left;
    overflow: hidden;
    object-position: center center;
    object-fit: cover;
    box-shadow: var(--box-shadow);
+   margin-left: 10%;
+   margin-right: 10%;
+   border-radius: 5px 5px 5px 5px;
+   border: 1px solid grey;
   
 
 }
+
+
 
 
 #search{
@@ -882,6 +992,97 @@ svg {
    box-shadow: var(--box-shadow);
 
 }
+.btnglowna{
+   color: #fff;
+   background: #009500;
+   display: inline-block;
+   width: min-content;
+   white-space: nowrap;
+   border: 1px solid transparent;
+   border-radius: 5px;
+   padding: .1rem .5rem;
+   font-size: 24px;
+   line-height: 1.7;
+   vertical-align: middle;
+   text-transform: uppercase;
+   box-shadow: var(--box-shadow);
+
+}
+.btnglowna:hover{
+   transition: .2s;
+   background: #006a00;
+   
+
+}
+.btndown{
+   color: #fff;
+   background: #009500;
+   display: inline-block;
+   width: min-content;
+   white-space: nowrap;
+   border: 1px solid transparent;
+   border-radius: 5px;
+   padding: .1rem .5rem;
+   font-size: 24px;
+   line-height: 1.7;
+   vertical-align: middle;
+   text-transform: uppercase;
+   box-shadow: var(--box-shadow);
+   border-radius: 500px;
+   padding-top: 8px;
+   font-size: 30px;
+   width: 70px;
+   height: 70px;
+   -webkit-animation-duration: 1s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+
+}
+.btndown:hover{
+   color: #fff;
+   background: #006800;
+   display: inline-block;
+   width: min-content;
+   white-space: nowrap;
+   border: 1px solid transparent;
+   border-radius: 5px;
+   padding: .1rem .5rem;
+   line-height: 1.7;
+   font-size: 36px;
+   vertical-align: middle;
+   text-transform: uppercase;
+   box-shadow: var(--box-shadow);
+   border-radius: 500px;
+   padding-top: 8px;
+   font-size: 30px;
+   width: 70px;
+   height: 70px;
+   transition: .3s;
+   animation-name: bounce;
+  -moz-animation-name: bounce;
+
+}
+
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	50% {
+		-webkit-transform: translateY(-30px);
+		-ms-transform:     translateY(-30px);
+		transform:         translateY(-30px)
+	}
+	100% {
+		-webkit-transform: translateY(-0x);
+		-ms-transform:     translateY(-0px);
+		transform:         translateY(-0px)
+	}
+}
 
 .btnloguj {
    font-size: 1.1rem;
@@ -1114,6 +1315,8 @@ border-radius: 10px 10px 0px 0px;
    box-shadow: var(--box-shadow);
    
 }
+
+
 
 .animal .tekst{
 

@@ -17,7 +17,7 @@ $animal = $cms->getAnimal()->getAnimalIndex();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Znajdz zwierzaka</title>
 
@@ -34,9 +34,31 @@ $animal = $cms->getAnimal()->getAnimalIndex();
 </head>
 <body>
 
-       <div class="paddingtop"></div>
-    <div class="index">      
-        <h1>Najnowsze zaginione zwierzęta:</h1>
+            <div class="banner-area">
+            <div class="content2">
+
+<p id="znajdz" >ZNAJDŹ ZWIERZAKA</p><br>
+<p id="znajdz2" >W przypadku zaginięcia zwierzęcia, <br> możesz dodać zwierzę na naszą stronę.</p><br>
+<a href="zglos.php" class="btnglowna" >ZGŁOŚ ZAGINIĘCIE</a>
+
+</div>
+                <div class="content-area">
+
+                    
+                    <div class="content1">
+
+                        <a href="#index" class="btndown" ><i class="fa-solid fa-arrow-down"></i></a>
+                    </div>
+                </div>
+            </div>
+              <div id="index" class="index">   
+            <div class="paddingtop"></div>
+          
+  <h1 class="tytul">Najnowsze zaginione zwierzęta:</h1>
+            
+       
+       
+      
             
                 <?php foreach($animal as $pojedynczo) { ?> 
                     <div class="baza"><br>
@@ -44,18 +66,21 @@ $animal = $cms->getAnimal()->getAnimalIndex();
                             <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
                                 <p> 
                                     <div class="teksty">           
-                                        Miejsce zaginięcia: <br> 
-                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                             <?= html_escape($pojedynczo['miasto'])?> 
-                                            <?php $datem = strtotime($pojedynczo['czas']);
+                                         
+                                            
+                                          
+                                                <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
+                                                <?php $datem = strtotime($pojedynczo['czas']);
                                                 $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?><br>
+
+                                    <div class="city"><i class="fa-solid fa-location-dot"></i><?= " ".$pojedynczo['miasto']?></div> 
+                                    <div class="calendar"><i class="fa fa-calendar"></i><?= " ".$wlasciwa ?></div> 
                                     </div>
                                                 
                                     <div class="column">
                                         <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
                                     </div> 
-                                    <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
-                                    <div class="calendar"><i class="fa fa-calendar"></i><?= $wlasciwa ?></div> 
+                                    
                                                 
                                                 
                                             
@@ -63,42 +88,19 @@ $animal = $cms->getAnimal()->getAnimalIndex();
                                             
                             </a>
                         </div>
+                      
                     </div>
+                    
                 <?php } ?>
-            
+                
+                <div class="lastbutton">
+                    <a href="zglos.php" class="btnglowna" >Zobacz wszystkie zwierzaki</a>
+    </div>
         
-    </div>
-    <div class="index">
-    <h1>Najnowsze zaginione zwierzęta:</h1>
-            
-            <?php foreach($animal as $pojedynczo) { ?> 
-                <div class="baza"><br>
-                    <div class="ramka">
-                        <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
-                            <p> 
-                                <div class="teksty">           
-                                    Miejsce zaginięcia: <br> 
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                         <?= html_escape($pojedynczo['miasto'])?> 
-                                        <?php $datem = strtotime($pojedynczo['czas']);
-                                            $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?><br>
-                                </div>
-                                            
-                                <div class="column">
-                                    <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
-                                </div> 
-                                <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
-                                <div class="calendar"><i class="fa fa-calendar"></i><?= $wlasciwa ?></div> 
-                                            
-                                            
-                                        
-                            </p>
-                                        
-                        </a>
-                    </div>
-                </div>
-            <?php } ?>
-    </div>
+    </div> 
+  
+   
+    
 <?php include 'includes/footer.php'; ?>
 <script src="script.js"></script> 
 </body>

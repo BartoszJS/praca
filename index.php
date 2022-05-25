@@ -1,4 +1,4 @@
- <?php
+<?php
 include 'src/bootstrap.php';    
 include 'src/database-connection.php'; 
 include 'src/validate.php'; 
@@ -49,10 +49,15 @@ $animal = $cms->getAnimal()->getAnimalIndex();
 
                         <a href="#index" class="btndown" ><i class="fa-solid fa-arrow-down"></i></a>
                     </div>
+                    
+                   
                 </div>
+                <div class="content3">
+                        <p>.</p>
+                    </div>
             </div>
               <div id="index" class="index">   
-            <div class="paddingtop"></div>
+        
           
   <h1 class="tytul">Najnowsze zaginione zwierzęta:</h1>
             

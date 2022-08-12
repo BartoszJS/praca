@@ -1,3 +1,8 @@
+
+
+
+
+
 <h1>Edit Article</h1>
       <?php if ($errors['warning']) { ?>
         <div class="alert alert-danger"><?= $errors['warning'] ?></div>

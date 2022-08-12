@@ -223,9 +223,11 @@ $section='';
                 </div>
               
 
-          
-          <div class="dodajbtn">
-                <a href="zglos.php" class="btn btn-search" >DODAJ ZWIERZAKA</a>
+            <div class="pytanie">
+                Zaginęło ci zwierzę?
+            </div>
+            <div class="dodajbtn">
+                <a href="zglos.php" class="btn btn-search" >ZGŁOŚ ZAGINIĘCIE</a>
             </div>
         </form>
 

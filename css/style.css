@@ -65,7 +65,9 @@ body {
 }
 
 .lastbutton{
-   margin-top: 1270px;
+   border-top: 1px solid black;
+   padding-top: 100px;
+   margin-bottom: 60px;
    margin-left: auto;
    margin-right: auto;
    text-align: center;
@@ -366,6 +368,50 @@ footer {
 }
 */
 
+.pole{
+   border-top: 1px solid black;
+   height: 200px;
+}
+
+
+
+/* .pole .zdjecie{
+   width: 300px;
+   height: 200px;
+} */
+
+.pole .tekstindex{
+   float: left;
+   width: 30%;
+   padding-top: 10px;
+   margin-left: 20%;
+}
+.pole .poj{
+   font-size: 22px;
+   color: #111;
+   padding: 5px;
+}
+
+.pole .pojimie{
+   font-size: 26px;
+   color: #111;
+   font-weight: bold;
+   padding: 5px;
+}
+
+
+.pole .zdjecieindex .image-resize {
+   height: 180px;
+   width: 30%;
+   border-radius: 1%;
+   box-shadow: var(--box-shadow);
+   overflow: hidden;
+   object-position: center center;
+   object-fit: cover;
+   margin-top: 10px;
+}
+
+
 
 .banner-area{
    width: 100%;
@@ -454,7 +500,7 @@ footer {
 
 
 .tytul {
-   margin-left: 6%;
+   margin-left: 12%;
    text-align: left;
    width: 100%;
    padding: 15px;
@@ -501,7 +547,6 @@ footer {
 .baza .ramka .calendar {
 
    width: 30%;
-   
    text-align: left;  
    margin-top: 232px; 
    color: white;
@@ -604,15 +649,31 @@ footer {
 }
 .wyszukanie h3{
    width: 70%;
+   margin-left: 15%;
    background-color: white;
    text-align: left;
    padding: 20px;
+   border: 1px solid green;
+   padding-left: 5%;
+   border-radius: 5px 5px 5px 5px;
+}
+
+
+
+/* .podgora {
+   margin-top: 20px;
+   padding-top: 25px;
+   font-size: 24px;
+   color: black;
+   width: 70%;
+   background-color: white;
+   text-align: left;
    border: 1px solid green;
    margin-left: auto;
    margin-right: auto;
    border-radius: 5px 5px 5px 5px;
    padding-left: 7%;
-}
+} */
 
 .wyszukanie .ramka {
    text-align: center;
@@ -817,13 +878,20 @@ nav.pagination {
    
 }
 
+.pytanie{
+      float: right;
+      margin-right: 14%;
+      padding-right: 2%;
+      
+   
+}
+
 .dodajbtn{
    float: right;
    margin-right: 14%;
    padding-right: 2%;
    margin-bottom: 30px;
-   padding-bottom: 30px;
-   padding-top: 2%;
+   
 }
 .szukajbtn{
    float: left;
@@ -1135,7 +1203,7 @@ svg {
 padding: 30px;
 padding-left: 19%;
 line-height: 25px;
-font-size: 16px;
+font-size: 22px;
 }
 
 
@@ -1444,6 +1512,9 @@ border-radius: 10px 10px 0px 0px;
    .zaginione {
       padding-top: 90px;
    }
+   .tytul{
+      margin-top: 40px;
+   }
 }
 
 
@@ -1454,6 +1525,9 @@ border-radius: 10px 10px 0px 0px;
 
    .zaginione {
       padding-top: 90px;
+   }
+   .tytul{
+      margin-top: 40px;
    }
 }
 
@@ -1469,6 +1543,9 @@ border-radius: 10px 10px 0px 0px;
    }
    .animal{
       padding-top: 0px;
+   }
+   .tytul{
+      margin-top: 20px;
    }
 }
 
@@ -1531,6 +1608,9 @@ border-radius: 10px 10px 0px 0px;
 
       height: 650px;
    
+   }
+   .tytul{
+      margin-top: 20px;
    }
 
 

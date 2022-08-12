@@ -65,42 +65,31 @@ $animal = $cms->getAnimal()->getAnimalIndex();
        
       
             
-                <?php foreach($animal as $pojedynczo) { ?> 
-                    <div class="baza"><br>
-                        <div class="ramka">
-                            <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
-                                <p> 
-                                    <div class="teksty">           
-                                         
-                                            
-                                          
-                                                <div class="imie"> <?= html_escape($pojedynczo['imie'])?> </div>
-                                                <?php $datem = strtotime($pojedynczo['czas']);
-                                                $wlasciwa = date('d'.'.'.'m'.'.'.'Y',$datem);?><br>
-
-                                    <div class="city"><i class="fa-solid fa-location-dot"></i><?= " ".$pojedynczo['miasto']?></div> 
-                                    <div class="calendar"><i class="fa fa-calendar"></i><?= " ".$wlasciwa ?></div> 
-                                    </div>
-                                                
-                                    <div class="column">
-                                        <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
-                                    </div> 
-                                    
-                                                
-                                                
-                                            
-                                </p>
-                                            
-                            </a>
-                        </div>
-                      
+                <?php foreach($animal as $pojedynczo) {?>
+                    <div class="pole">
+                        <a href="animal.php?id=<?= $pojedynczo['id'] ?>">
+                            <div class="tekstindex">
+                                <p class="pojimie"><?= $pojedynczo['imie'] ?></p>
+                                <p class="poj"><i class="fa-solid fa-location-dot"></i><?= ' '.$pojedynczo['miasto'] ?></p>
+                                <p class="poj"><i class="fa fa-calendar"></i><?= ' '.$pojedynczo['czas'] ?></p>
+                                
+                            </div>
+                            <div class="zdjecieindex">
+                                <img class="image-resize"  src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>" >
+                            </div> 
+                            
+                        </a>
                     </div>
-                    
+
                 <?php } ?>
+
+                
+
+
                 
                 <div class="lastbutton">
                     <a href="zglos.php" class="btnglowna" >Zobacz wszystkie zwierzaki</a>
-    </div>
+                </div>
         
     </div> 
   

@@ -56,7 +56,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   $bezdomne['id_member']=$_POST['id_member'];
   $bezdomne['id_image']= $lastImage;
  
-
+ 
 
     $temp = $_FILES['plik']['tmp_name'];
     $path = 'uploads/' . $_FILES['plik']['name'];
@@ -68,11 +68,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $cms->getImage()->dodajImage($argumentsImage); 
 
+    
  
     $arguments=$bezdomne;
   
-    $cms->getAnimal()->dodajAnimal($arguments);  
+    // $message = "wrong answer";
+    // echo "<script type='text/javascript'>alert('$message');</script>";
 
+    $cms->getBezdomne()->dodajBezdomne($arguments);  
+   
 
 }
 
@@ -99,12 +103,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
-<form action="zglos.php" method="POST" enctype="multipart/form-data"> 
+<form action="dodaj.php" method="POST" enctype="multipart/form-data"> 
 <br><br><br><br>
     <section class="formularz">
     <div class="ramka">
       <br>
       <h1>Formularz dodania bezdomnego zwierzęcia</h1> <br>
+      
       
 
       <?php if ($errors['warning']) { ?>

@@ -8,6 +8,7 @@ class CMS
     protected $session   = null;                              
     protected $animal   = null;                                                         
     protected $image   = null;                                                         
+    protected $bezdomne   = null;                                                         
                   
 
     public function __construct($dsn, $username, $password)
@@ -48,6 +49,13 @@ class CMS
             $this->image = new Image($this->db);         // Create Token object
         }
         return $this->image;                             // Return Token object
+    }
+    public function getBezdomne()
+    {
+        if ($this->bezdomne === null) {                     // If $bezdomne property null
+            $this->bezdomne = new Bezdomne($this->db);         // Create Token object
+        }
+        return $this->bezdomne;                             // Return Token object
     }
 
 

@@ -38,6 +38,14 @@ class Member
         return $this->db->runSQL($sql, [$email])->fetchColumn(); // Run SQL and return member id
     }
 
+    public function getIdOwneraZaginionego($id)
+    {
+        $sql = "SELECT id_member
+                  FROM animal
+                 WHERE id = :id;";                         // SQL query to get member id
+        return $this->db->runSQL($sql, [$id])->fetchColumn(); // Run SQL and return member id
+    }
+
     // Login: returns member data if authenticated, false if not
     public function login(string $email, string $haslo)
     {

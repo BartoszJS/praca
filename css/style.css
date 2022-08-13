@@ -1206,6 +1206,11 @@ line-height: 25px;
 font-size: 22px;
 }
 
+.usunzzaginionych{
+   text-align: right;
+   padding-top: 300px;
+}
+
 
 
 .konto .zapisane{
@@ -1453,6 +1458,13 @@ border-radius: 10px 10px 0px 0px;
    text-align: right;
    padding-top: 50px;
    font-size: 21px;
+}
+.zglos1{
+   padding-top: 20px;
+   font-size: 25px;
+}
+.ramku{
+   text-align: center;
 }
 
 

@@ -1,6 +1,8 @@
 <?php
 namespace PhpBook\CMS;     
 
+use PDOException;
+
 class Image
 {
     protected $db;                                       // Holds ref to Database object

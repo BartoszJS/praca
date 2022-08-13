@@ -45,12 +45,12 @@ $animal = $cms->getMember()->getMembersAnimal($id);
         </div>
         <br><br>
         <div class="zapisanee">
-            <h3>Dodane zwierzeta</h3>
+            <h3>Dodane zaginione zwierzeta</h3>
         </div>
         </a>
         <a href="zapisane.php">
         <div class="dodanee">
-            <h3>Zapisane zwierzęta</h3>
+            <h3>Dodane bezdomne zwierzęta</h3>
         </div>
         </a>
         <div class="tekst">
@@ -65,7 +65,33 @@ $animal = $cms->getMember()->getMembersAnimal($id);
                         <?= "Rasa: " .$pojedynczo['rasa']; ?><br><br>
                         <?= "Miejsce zaginięcia: " .$pojedynczo['miasto'].", ".$pojedynczo["wojewodztwo"]; ?><br><br>
                         <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
+
                     </div>
+
+                    
+                    <div class="usunzzaginionych">
+                        
+                    <a href="usun.php?id=<?= $pojedynczo['id'] ?>" id="button" class="btnloguj">USUŃ Z ZAGINIONYCH</a>
+                    </div>
+                   
+                    <?php /*
+                    <div class="usunzzaginionych">
+                <a href="#" id="button" class="btnloguj">USUŃ Z ZAGINIONYCH</a>
+            </div>
+            <div class="bg-modal">
+                <div class="content">
+                    <div class="close">+</div>
+                    <br>
+                    <div class="tekscior">
+                    <h3>Czy napewno chcesz usunąć?</h3><br>
+                    
+                    </div>
+                
+                </div>
+                
+
+            </div>
+                     */?>
                     
                 </div>
             <?php } ?> 

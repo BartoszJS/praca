@@ -88,7 +88,7 @@ $animal = $cms->getAnimal()->getAnimalIndex();
 
                 
                 <div class="lastbutton">
-                    <a href="zglos.php" class="btnglowna" >Zobacz wszystkie zwierzaki</a>
+                    <a href="zaginione.php" class="btnglowna" >Zobacz wszystkie zwierzaki</a>
                 </div>
         
     </div> 

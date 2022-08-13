@@ -9,20 +9,133 @@ $term2  = filter_input(INPUT_GET, 'term2');
 $show  = filter_input(INPUT_GET, 'show', FILTER_VALIDATE_INT) ?? 3; // Limit
 $from  = filter_input(INPUT_GET, 'from', FILTER_VALIDATE_INT) ?? 0; // Offset
 $count = 0;
-$animal=[];
+$bezdomne=[];
 
-$sqlicz="SELECT COUNT(zwierze) from bezdomne ;";
-        $count = pdo($pdo, $sqlicz)->fetchColumn();
 
-$sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, bezdomne.miasto,
+if(!$term and !$term2){
+    $count = 0;
+    $sqlicz="SELECT COUNT(zwierze) from bezdomne ;";
+    $count = pdo($pdo, $sqlicz)->fetchColumn();
+    if($count>0){
+        $arguments['show'] = $show;                     
+        $arguments['from'] = $from;
+
+            $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, bezdomne.miasto,
             bezdomne.wojewodztwo, bezdomne.id_member, bezdomne.czas,
             image.plik
             FROM bezdomne
             join image on bezdomne.id_image = image.id 
-            order by bezdomne.id DESC;";
-            $bezdomne = pdo($pdo,$sql)->fetchAll();
+            order by bezdomne.id DESC
+            limit :show
+            OFFSET :from;";
+            $bezdomne = pdo($pdo,$sql, $arguments)->fetchAll();
+        }
+
+}
+
+if(($term!="") and ($term!="")){
+
+    $arguments['term1'] ='%'.$term.'%'; 
+    $arguments['term2'] ='%'.$term2.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
 
 
+    $sql="SELECT COUNT(zwierze) from bezdomne 
+    where wojewodztwo     like :term2
+    and miasto     like :term1;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, bezdomne.miasto,
+        bezdomne.wojewodztwo, bezdomne.id_member, bezdomne.czas,
+                image.plik
+                FROM bezdomne
+                join image on bezdomne.id_image = image.id 
+                where bezdomne.wojewodztwo like :term2
+                and bezdomne.miasto like :term1
+                order by bezdomne.id asc
+                limit :show
+                OFFSET :from;";
+        
+        $bezdomne = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+
+
+}else if($term){
+    
+    $arguments['term1'] ='%'. $term .'%'; 
+    // $arguments['term2'] ='%'.$term.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
+
+
+    $sql="SELECT COUNT(zwierze) from bezdomne 
+    where miasto     like :term1;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, bezdomne.miasto,
+        bezdomne.wojewodztwo, bezdomne.id_member, bezdomne.czas,
+                image.plik
+                FROM bezdomne
+                join image on bezdomne.id_image = image.id 
+                where bezdomne.miasto like :term1
+                order by bezdomne.id asc
+                limit :show
+                OFFSET :from;";
+        
+        $bezdomne = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+
+}else if($term2){
+    
+    $arguments['term2'] ='%'. $term2 .'%'; 
+    // $arguments['term2'] ='%'.$term.'%';            // three times as placeholders
+    // $arguments['term3'] ='%'.$term.'%';
+
+
+    $sql="SELECT COUNT(zwierze) from bezdomne 
+    where  wojewodztwo     like :term2;";
+
+    $count = 0;
+    
+    $count = pdo($pdo, $sql, $arguments)->fetchColumn();
+
+
+    if ($count > 0) {                                     // If articles match term
+        $arguments['show'] = $show;                       // Add to array for pagination
+        $arguments['from'] = $from; 
+
+        $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, bezdomne.miasto,
+        bezdomne.wojewodztwo, bezdomne.id_member, bezdomne.czas,
+                image.plik
+                FROM bezdomne
+                join image on bezdomne.id_image = image.id 
+                where bezdomne.wojewodztwo like :term2
+                order by bezdomne.id asc
+                limit :show
+                OFFSET :from;";
+        
+        $bezdomne = pdo($pdo, $sql, $arguments)->fetchAll();
+
+    }
+
+}
 ?> 
 
 <!DOCTYPE html>
@@ -59,7 +172,7 @@ $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, 
         <br>
         <div class="szukajbtn">
             <h4>Wyszukaj zwierzaka: </h4>
-            <form action="zaginione.php" method="get" class="form-search">
+            <form action="bezdomne.php" method="get" class="form-search">
                     <label for="search"><span> </span></label>
     
                     <select name="term2" id="wojewodztwo" >
@@ -127,14 +240,14 @@ $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, 
         <div class="ramka">
 
             <a href="bezdomnezwierze.php?id=<?= $solo['id'] ?>">
-            <div class="imie"> <?= html_escape($solo['znaki'])?> </div>
+            <div class="imie"> Bezdomny <?= html_escape($solo['zwierze'])?> </div>
             <div class="column">
                     <img class="image-resize" src="uploads/<?= html_escape($solo['plik'] ?? 'blank.png') ?>">
                 </div> 
             <div class="tekst">
-            <?= "Rasa: ".$solo['znaki'] ?><br><br>
+            <?= "Znaki szczególne: ".$solo['znaki'] ?><br><br>
 
-                Miejsce zaginięcia: <br>
+                Ostatnio widziany: <br>
                 <i class="fa fa-map-marker" ></i> <?= html_escape($solo['miasto']).', '.html_escape($solo['wojewodztwo'])?><br><br>
                                         
                 <?php $datem = strtotime($solo['czas']);
@@ -151,9 +264,10 @@ $sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, bezdomne.znaki, 
             </a>
 
     </div>
+    <?php } ?>
     </div>
 
-<?php } ?>
+
     
 <?php include 'includes/footer.php'; ?>
 <script src="script.js"></script> 

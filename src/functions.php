@@ -24,6 +24,13 @@ function is_member($role)
         exit;                                                  // Stop code running
     }
 }
+function is_owner($id_member,$id_obecne)
+{
+    if ($id_member !== $id_obecne ) {                                   // If role is not admin
+        header('Location: brakuprawnien.php');                                 // Send to home page
+        exit;                                                  // Stop code running
+    }
+}
 
 function is_admin($role)
 {

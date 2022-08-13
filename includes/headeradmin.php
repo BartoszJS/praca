@@ -12,7 +12,7 @@
         </label>
         <label class="logo">
         <div class="logo_container">
-        <a href="index.php"><h1>ZNAJDZ <br> ZWIERZAKA </h1></a>
+        <a href="index.php"><h1>ZNAJDŹ <br> ZWIERZAKA </h1></a>
         </div>
         </label>
         <ul class="navigatione">

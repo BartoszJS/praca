@@ -1,5 +1,6 @@
 <?php
-namespace PhpBook\CMS;     
+namespace PhpBook\CMS;   
+use PDOException;  
 
 class Animal
 {
@@ -67,6 +68,14 @@ class Animal
       throw $e;
     }
 }
+
+public function usunAnimal($id)
+    { 
+
+        $sql="DELETE FROM animal where id=:id;";
+        return $this->db->runSql($sql,[$id])->fetch();
+
+    }
 
 
 

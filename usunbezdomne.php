@@ -12,7 +12,7 @@ if (!$id) {
     header("Location: page-not-found.php");  
     exit();                                         // If no valid id
 }
-$idOwner=$cms->getMember()->getIdOwneraZaginionego($id);
+$idOwner=$cms->getMember()->getIdOwneraBezdomnego($id);
 $id_obecne=$_SESSION['id'];
 is_owner($idOwner,$id_obecne);
 
@@ -22,19 +22,19 @@ is_owner($idOwner,$id_obecne);
 
 
 
-$sql="SELECT animal.id , animal.zwierze, animal.imie, animal.rasa, animal.wielkosc, 
-    animal.kolor, animal.wojewodztwo, animal.miasto,animal.id_member,animal.zaginiony,animal.czas,
+$sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, 
+    bezdomne.znaki, bezdomne.wojewodztwo, bezdomne.miasto,bezdomne.id_member,bezdomne.czas,
     image.plik
-    FROM animal
-    join image on animal.id_image = image.id 
-    where animal.id=:id;";
+    FROM bezdomne
+    join image on bezdomne.id_image = image.id 
+    where bezdomne.id=:id;";
 
-$animal = pdo($pdo, $sql, [$id])->fetch();    // Get article data
-if (!$animal) {   
+$bezdomne = pdo($pdo, $sql, [$id])->fetch();    // Get article data
+if (!$bezdomne) {   
     header("Location: page-not-found.php");  
     exit();                              // Page not found
 }
-$idmember = $animal['id_member'];
+$idmember = $bezdomne['id_member'];
 
 $member = $cms->getMember()->getAnimalsMember($idmember);
 
@@ -43,7 +43,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
    
-    $zwierze =$cms->getAnimal()->usunAnimal($id);
+    $zwierze =$cms->getBezdomne()->usunBezdomne($id);
     header("Location: potwierdzenie.php");  
     exit();                             
     
@@ -81,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <div class="imie"> Potwierdzenie usunięcia </div>
             <div class="column">
-                    <img class="image-resize" src="uploads/<?= html_escape($animal['plik'] ?? 'blank.png') ?>">
+                    <img class="image-resize" src="uploads/<?= html_escape($bezdomne['plik'] ?? 'blank.png') ?>">
                 </div> 
             <div class="tekst">
             
@@ -93,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="zglos1">
                 Czy napewno chcesz usunąć? <br>
-                <form action="usun.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data"> 
+                <form action="usunbezdomne.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data"> 
                 <input type="submit" name="update" class="btnloguj" value="USUŃ"> 
                 <a href = "javascript:history.back()" class="btnloguj">ANULUJ</a>
                 </form>

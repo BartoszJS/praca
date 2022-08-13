@@ -45,6 +45,13 @@ class Member
                  WHERE id = :id;";                         // SQL query to get member id
         return $this->db->runSQL($sql, [$id])->fetchColumn(); // Run SQL and return member id
     }
+    public function getIdOwneraBezdomnego($id)
+    {
+        $sql = "SELECT id_member
+                  FROM bezdomne
+                 WHERE id = :id;";                         // SQL query to get member id
+        return $this->db->runSQL($sql, [$id])->fetchColumn(); // Run SQL and return member id
+    }
 
     // Login: returns member data if authenticated, false if not
     public function login(string $email, string $haslo)
@@ -142,6 +149,21 @@ FROM animal
 join image on animal.id_image = image.id 
 where animal.id_member = :id   
 order by animal.id DESC;";
+
+
+return $this->db->runSql($sql,[$id])->fetchAll();     
+}
+
+    public function getMembersHomeless($id)
+{ 
+
+$sql="SELECT bezdomne.id , bezdomne.zwierze, bezdomne.wielkosc, 
+bezdomne.znaki, bezdomne.wojewodztwo, bezdomne.miasto,bezdomne.id_member,bezdomne.czas,
+image.plik
+FROM bezdomne
+join image on bezdomne.id_image = image.id 
+where bezdomne.id_member = :id   
+order by bezdomne.id DESC;";
 
 
 return $this->db->runSql($sql,[$id])->fetchAll();     

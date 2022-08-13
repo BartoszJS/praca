@@ -1,10 +1,11 @@
 <?php
 include 'src/bootstrap.php';    
-include 'src/database-connection.php'; 
-include 'src/validate.php'; 
+
+is_member($session->role);  
 
 
-$animal = $cms->getAnimal()->getAnimalIndex();
+$id = $_SESSION['id'];
+$animal = $cms->getMember()->getMembersHomeless($id);
 
 
 ?> 
@@ -43,25 +44,59 @@ $animal = $cms->getAnimal()->getAnimalIndex();
             </div>
         </div>
         <br><br>
-       
         <a href="myaccount.php">
-    <div class="zapisane">
-            <h3>Dodane zwierzeta</h3>
+        <div class="zapisane">
+            <h3>Dodane zaginione zwierzeta</h3>
         </div>
         </a>
-            
-        <div class="dodane">
-            <h3>Zapisane zwierzęta</h3>
-        </div>
        
+        <div class="dodane">
+            <h3>Dodane bezdomne zwierzęta</h3>
+        </div>
+        </a>
         <div class="tekst">
             <?php foreach($animal as $pojedynczo) { ?> 
-                <?= $pojedynczo['id']; ?><br>
-                <?= $pojedynczo['imie']; ?><br>
-                <?= $pojedynczo['rasa']; ?><br>
+                <div class="animalcontainer">
+                    <div class="photo">
+                        <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
+                    </div>
+                    <div class="opis">
+                        <?= "ID: ".$pojedynczo['id']; ?><br><br>
+                       
+                        <?= "Miejsce zaginięcia: " .$pojedynczo['miasto'].", ".$pojedynczo["wojewodztwo"]; ?><br><br>
+                        <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
+
+                    </div>
+
+                    
+                    <div class="usunzzaginionych">
+                        
+                    <a href="usunbezdomne.php?id=<?= $pojedynczo['id'] ?>" id="button" class="btnloguj">USUŃ Z BAZY</a>
+                    </div>
+                   
+                    <?php /*
+                    <div class="usunzzaginionych">
+                <a href="#" id="button" class="btnloguj">USUŃ Z ZAGINIONYCH</a>
+            </div>
+            <div class="bg-modal">
+                <div class="content">
+                    <div class="close">+</div>
+                    <br>
+                    <div class="tekscior">
+                    <h3>Czy napewno chcesz usunąć?</h3><br>
+                    
+                    </div>
+                
+                </div>
+                
+
+            </div>
+                     */?>
+                    
+                </div>
             <?php } ?> 
 
-            <br><br><br><br>
+            
         </div>
 
     </div>

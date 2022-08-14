@@ -66,8 +66,8 @@ body {
 
 .lastbutton{
    border-top: 1px solid black;
+   width: 75%;
    padding-top: 100px;
-   margin-bottom: 60px;
    margin-left: auto;
    margin-right: auto;
    text-align: center;
@@ -369,8 +369,11 @@ footer {
 */
 
 .pole{
+   width: 75%;
    border-top: 1px solid black;
    height: 200px;
+   margin-left: auto;
+   margin-right: auto;
 }
 
 
@@ -382,9 +385,9 @@ footer {
 
 .pole .tekstindex{
    float: left;
-   width: 30%;
+   width: 40%;
    padding-top: 10px;
-   margin-left: 20%;
+   margin-left: 10%;
 }
 .pole .poj{
    font-size: 22px;
@@ -402,10 +405,10 @@ footer {
 
 .pole .zdjecieindex .image-resize {
    height: 180px;
-   width: 30%;
+   width: 40%;
    border-radius: 1%;
    box-shadow: var(--box-shadow);
-   overflow: hidden;
+   overflow: visible;
    object-position: center center;
    object-fit: cover;
    margin-top: 10px;
@@ -487,7 +490,7 @@ footer {
 
 .index {
    padding-top: 0px;
-   height: 1450px;
+   height: 1250px;
    background-color: #ffffff;
    width: 90%;
    margin-left: auto;

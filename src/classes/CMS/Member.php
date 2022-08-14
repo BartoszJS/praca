@@ -180,6 +180,37 @@ public function getAnimalsMember($id)
 return $this->db->runSql($sql,[$id])->fetch();     
 }
 
+public function liczBezdomne($id_member)
+{ 
+$sql="SELECT COUNT(id_member) from bezdomne
+where id_member like :id_member ;";
+return $this->db->runSql($sql, [$id_member])->fetchColumn();
+}
+
+
+public function liczZaginione($id_member)
+{ 
+   
+$sql="SELECT COUNT(id_member) from animal
+where id_member like :id_member ;";
+
+
+return $this->db->runSql($sql,[$id_member])->fetchColumn();
+}
+
+
+
+public function czytelnicy()
+{ 
+    $sql="SELECT id , imie, nazwisko, email, data_dolaczenia, telefon, role
+    FROM member";
+
+
+return $this->db->runSql($sql)->fetchAll(); 
+}
+
+
+
 
 
 }

@@ -9,10 +9,14 @@ is_admin($session->role);
 
 
 
-$sql="SELECT id , imie, nazwisko, email, data_dolaczenia, telefon, role
-    FROM member";
 
-$members = pdo($pdo, $sql)->fetchAll();    // Get article data
+$members = $cms->getMember()->czytelnicy();
+
+
+
+
+
+
 
 
 
@@ -55,8 +59,12 @@ $members = pdo($pdo, $sql)->fetchAll();    // Get article data
         </div>
         <div class="dane">
             Uprawnienia - <?= $member['role'] ?><br>
-            Liczba dodanych zwierzat: 5 <br>  
-            Liczba dodanych zwierzat: 5
+            <?php 
+            $bezdomne = $cms->getMember()->liczBezdomne($member['id']);
+            $zaginione = $cms->getMember()->liczZaginione($member['id']);
+            ?>
+            Dodane bezdomne zwierzęta: <?= $bezdomne ?> <br>  
+            Dodane zaginione zwierzęta: <?= $zaginione ?> <br>  
         </div>
         <div class="ddd">
             

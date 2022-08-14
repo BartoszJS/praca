@@ -42,6 +42,8 @@ $animal = $cms->getMember()->getMembersAnimal($id);
                 <?= "Data dołączenia: ".$_SESSION['data_dolaczenia']; ?><br>
                 <?= "Telefon: ".$_SESSION['telefon']; ?>
             </div>
+            <div class="ramka2">.</div>
+             <div class="clear">.</div>
         </div>
         <br><br>
         <div class="zapisanee">
@@ -67,6 +69,7 @@ $animal = $cms->getMember()->getMembersAnimal($id);
                         <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
 
                     </div>
+                  
 
                     
                     <div class="usunzzaginionych">

@@ -1205,10 +1205,25 @@ padding: 30px;
 padding-left: 19%;
 line-height: 25px;
 font-size: 22px;
-border: 1px solid purple;
 width: 50%;
+float: left;
+height: 200px;
 }
-
+.myaccount .ramka2{
+padding: 30px;
+padding-left: 19%;
+line-height: 25px;
+font-size: 22px;
+width: 50%;
+float: left;
+height: 200px;
+}
+.myaccount .ramka2 .clear{
+   clear: both;
+}
+.animalcontainer h1{
+   text-align: center;
+}
 
 .usunzzaginionych{
    text-align: right;

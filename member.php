@@ -26,6 +26,7 @@ if (!$member) {
 $idmember = $member['id'];
 
 $animals = $cms->getMember()->getMembersAnimal($idmember);
+$bezdomne = $cms->getMember()->getMembersHomeless($idmember);
 
 
 ?>
@@ -60,8 +61,11 @@ $animals = $cms->getMember()->getMembersAnimal($idmember);
                 <?= "Data dołączenia: ".$member['data_dolaczenia']; ?><br>
                 <?= "Telefon: ".$member['telefon']; ?>
             </div>
-           
-            
+            <div class="ramka2">
+                <a href="usun.php" id="button" class="btnloguj">EDYTU UŻYTKOWNIKA</a> <br> <br>
+                <a href="usun.php" id="button" class="btnloguj">USUŃ  UŻYTKOWNIKA</a>
+            </div>
+            <div class="clear">.</div>
 
         </div>
         <br><br>
@@ -69,14 +73,11 @@ $animals = $cms->getMember()->getMembersAnimal($idmember);
             <h3>Dodane zwierzeta</h3>
         </div>
         </a>
-        <a href="zapisane.php">
-        <div class="dodanee">
-            <h3>Dodane bezdomne zwierzęta</h3>
-        </div>
-        </a>
+      
         <div class="tekst">
             <?php foreach($animals as $pojedynczo) { ?> 
                 <div class="animalcontainer">
+                    <h1>Zaginione zwierze</h1>
                     <div class="photo">
                         <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
                     </div>
@@ -84,6 +85,51 @@ $animals = $cms->getMember()->getMembersAnimal($idmember);
                         <?= "ID: ".$pojedynczo['id']; ?><br><br>
                         <?= "Imie: ".$pojedynczo['imie']; ?><br><br>
                         <?= "Rasa: " .$pojedynczo['rasa']; ?><br><br>
+                        <?= "Miejsce zaginięcia: " .$pojedynczo['miasto'].", ".$pojedynczo["wojewodztwo"]; ?><br><br>
+                        <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
+
+                    </div>
+
+                    
+                    <div class="usunzzaginionych">
+                        
+                    <a href="usun.php?id=<?= $pojedynczo['id'] ?>" id="button" class="btnloguj">EDYTU</a>
+                    <a href="usun.php?id=<?= $pojedynczo['id'] ?>" id="button" class="btnloguj">USUŃ</a>
+                    <a href="usun.php?id=<?= $pojedynczo['id'] ?>" id="button" class="btnloguj">ZOBACZ</a>
+                    </div>
+                   
+                    <?php /*
+                    <div class="usunzzaginionych">
+                <a href="#" id="button" class="btnloguj">USUŃ Z ZAGINIONYCH</a>
+            </div>
+            <div class="bg-modal">
+                <div class="content">
+                    <div class="close">+</div>
+                    <br>
+                    <div class="tekscior">
+                    <h3>Czy napewno chcesz usunąć?</h3><br>
+                    
+                    </div>
+                
+                </div>
+                
+
+            </div>
+                     */?>
+                    
+                </div>
+            <?php } ?> 
+
+
+            <?php foreach($bezdomne as $pojedynczo) { ?> 
+                <div class="animalcontainer">
+                    <h1>Bezdomne zwierze</h1>
+                    <div class="photo">
+                        <img class="image-resize" src="uploads/<?= html_escape($pojedynczo['plik'] ?? 'blank.png') ?>">
+                    </div>
+                    <div class="opis">
+                        <?= "ID: ".$pojedynczo['id']; ?><br><br>
+                      
                         <?= "Miejsce zaginięcia: " .$pojedynczo['miasto'].", ".$pojedynczo["wojewodztwo"]; ?><br><br>
                         <?= "Data dodania: " .$pojedynczo['czas']; ?><br>
 

@@ -39,6 +39,8 @@ class Bezdomne
     }
 }
 
+
+
 public function usunBezdomne($id)
     { 
 
